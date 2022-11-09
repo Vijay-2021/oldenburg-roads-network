@@ -1,14 +1,13 @@
 #include "Graph.hpp"
 #include <algorithm>
 #include <iostream> 
-Graph::Graph() {
+Graph::Graph(): num_edges_(0), num_vertices_(0), row_ptr_size_(0), vertice_array_(nullptr), adjacency_matrix_cols_(nullptr), adjacency_matrix_data_(nullptr), adjacency_matrix_rowptr_(nullptr) {
 
 }
 Graph::Graph(std::vector<std::vector<std::string>> vertice_input, std::vector<std::vector<std::string>> edge_input) {
     num_vertices_ = vertice_input.size();
     row_ptr_size_ = num_vertices_ + 1;
     vertice_array_ = new int[num_vertices_];
-    adjacency_matrix_rowptr_ = new int[num_vertices_];
     for (unsigned i = 0; i < vertice_input.size(); i++) {
         // we simply assign vertice_array_[i] the value of i, however in the future we will want to process the location information for our A* heuristic 
         vertice_array_[i] = std::stoi(vertice_input[i][0]); // assume the 0th index contains the vertex value
@@ -30,8 +29,10 @@ Graph::Graph(std::vector<std::vector<std::string>> vertice_input, std::vector<st
         adjacency_matrix_cols_[i] = second_vertice;
         adjacency_matrix_data_[i] = value;
         if (first_vertice != curr_vertex) {
-            adjacency_matrix_rowptr_[curr_vertex] = total;
-            curr_vertex = first_vertice;
+            while (curr_vertex < first_vertice) {
+                 adjacency_matrix_rowptr_[curr_vertex] = total;
+                 curr_vertex ++;
+            }
         } 
         total++;
     }
@@ -77,10 +78,14 @@ void Graph::copyGraph(const Graph& rhs) {
 }
 
 void Graph::deleteGraph() {
-    delete[] adjacency_matrix_rowptr_;
-    delete[] adjacency_matrix_cols_;
-    delete[] adjacency_matrix_data_;
-    delete[] vertice_array_;
+    if (num_edges_ > 0) {
+        delete[] adjacency_matrix_cols_;
+        delete[] adjacency_matrix_data_;
+    }
+    if (num_vertices_ > 0) {
+        delete[] adjacency_matrix_rowptr_;
+        delete[] vertice_array_;
+    }
     adjacency_matrix_rowptr_ = nullptr;
     adjacency_matrix_data_ = nullptr;
     adjacency_matrix_cols_ = nullptr;
@@ -104,6 +109,10 @@ bool Graph::areAdjacentHelper(int vertex1, int vertex2) const {
         start_idx = adjacency_matrix_rowptr_[vertex1 - 1];
     }
     int end_idx = adjacency_matrix_rowptr_[vertex1];
+    if (vertex1 == 2262) {
+        std::cout << "start index: " << start_idx << std::endl;
+        std::cout << "end index: " << end_idx << std::endl;
+    }
     for (int i = start_idx; i < end_idx; i++) {
         if (adjacency_matrix_cols_[i] == vertex2) {
             return true;

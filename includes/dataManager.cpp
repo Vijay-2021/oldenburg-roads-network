@@ -39,5 +39,7 @@ Graph loadGraph(std::string vertices_file, std::string edges_file) {
             edge_output.push_back(std::vector<std::string>(line_begin, line_end));
         }
     }
+    edge_file.close();
+    vertice_file.close();
     return Graph(vertice_output, edge_output);
 }

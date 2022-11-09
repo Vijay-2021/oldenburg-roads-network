@@ -19,12 +19,13 @@ class Graph{
         void copyGraph(const Graph& rhs);
         void deleteGraph();
         bool areAdjacentHelper(int vertex1, int vertex2) const;
-        int* adjacency_matrix_rowptr_;
-        int* adjacency_matrix_cols_;
-        double* adjacency_matrix_data_;
-        int* vertice_array_;
         int num_edges_; // this is the size of cols and data 
         int num_vertices_;
         int row_ptr_size_;
+        int* vertice_array_;
+        int* adjacency_matrix_cols_;
+        double* adjacency_matrix_data_;
+        int* adjacency_matrix_rowptr_;
+        
 
 };
