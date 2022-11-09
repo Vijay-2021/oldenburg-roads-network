@@ -5,7 +5,7 @@
 #include "Graph.hpp"
 
 //loads a filename into a graph
-Graph loadGraph(std::string filename);
+Graph loadGraph(std::string vertices_file, std::string edges_file);
 
 void printEdgesToFile(std::string filename, Graph g);
 void printVerticesToFile(std::string filename, Graph g);

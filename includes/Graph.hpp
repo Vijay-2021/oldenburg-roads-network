@@ -1,15 +1,30 @@
 #pragma once
-
+#include <vector>
+#include <string>
 class Graph{
     public:
+        Graph();
+        Graph(std::vector<std::vector<std::string>> vertice_input, std::vector<std::vector<std::string>> edge_input);
+        Graph(const Graph& rhs);
+        ~Graph();    
+        Graph& operator=(const Graph& rhs);
 
+        //getters and setters 
+        int getNumEdges() const;
+        int getNumVertices() const;
+        bool areAdjacent(int vertex1, int vertex2) const;
+        double edgeValue(int idx) const;
+        int indexOfAdjacentEdge(int vertex1, int vertex2) const;
     private:
-        double* adjacency_matrix_rowptr_;
-        double* adjacency_matrix_cols_;
+        void copyGraph(const Graph& rhs);
+        void deleteGraph();
+        bool areAdjacentHelper(int vertex1, int vertex2) const;
+        int* adjacency_matrix_rowptr_;
+        int* adjacency_matrix_cols_;
         double* adjacency_matrix_data_;
-        double cols_size_;
-        double rowptr_size_;
-        double num_vertices_;
-        
+        int* vertice_array_;
+        int num_edges_; // this is the size of cols and data 
+        int num_vertices_;
+        int row_ptr_size_;
 
 };

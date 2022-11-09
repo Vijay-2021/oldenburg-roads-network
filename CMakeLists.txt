@@ -23,15 +23,23 @@ list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 add_executable(main ../entry/main.cpp)
 
 target_include_directories(main
-    PUBLIC ${PROJECT_SOURCE_DIR}/includes
+    PUBLIC ${PROJECT_SOURCE_DIR}/lib
 )
 
 target_include_directories(main
-    PUBLIC ${PROJECT_SOURCE_DIR}/lib
+    PUBLIC ${PROJECT_SOURCE_DIR}/includes
 )
 
 file(GLOB_RECURSE tests CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/tests/*.cpp)
 add_executable(tests ${tests})
+
+target_include_directories(tests
+    PUBLIC ${PROJECT_SOURCE_DIR}/includes
+)
+
+target_include_directories(tests
+    PUBLIC ${PROJECT_SOURCE_DIR}/lib
+)
 
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 add_subdirectory(${PROJECT_SOURCE_DIR}/includes)
