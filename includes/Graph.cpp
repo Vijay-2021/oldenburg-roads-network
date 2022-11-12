@@ -138,3 +138,17 @@ int Graph::indexOfAdjacentEdge(int vertex1, int vertex2) const{
 double Graph::edgeValue(int idx) const {
     return adjacency_matrix_data_[idx];
 }
+
+std::vector<int> Graph::adjacent(int vertex) const {
+    std::vector<int> adjacentVertices;
+    int start_idx = 0;
+    if (vertex > 0) {
+        start_idx = adjacency_matrix_rowptr_[vertex - 1];
+    }
+    int end_idx = adjacency_matrix_rowptr_[vertex];
+
+    for (int i = start_idx; i < end_idx; i++) {
+        adjacentVertices.push_back(adjacency_matrix_cols_[i]);
+    }
+    return adjacentVertices;
+}
