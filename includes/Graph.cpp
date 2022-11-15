@@ -98,7 +98,15 @@ int Graph::getNumEdges() const {
 int Graph::getNumVertices() const {
     return num_vertices_;
 }
-
+int* Graph::getAdjColsArray() const {
+    return adjacency_matrix_cols_;
+}
+double* Graph::getAdjDataArray() const {
+    return adjacency_matrix_data_;
+}
+int* Graph::getAdjRowPtrArray() const {
+    return adjacency_matrix_rowptr_;
+}
 bool Graph::areAdjacent(int vertex1, int vertex2) const {
     return (areAdjacentHelper(vertex1, vertex2) || areAdjacentHelper(vertex2, vertex1));
 }
