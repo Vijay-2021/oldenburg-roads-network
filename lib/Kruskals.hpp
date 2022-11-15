@@ -4,15 +4,18 @@
 #include "../includes/DisjointSets.h"
 #include "../includes/PriorityQueue.h"
 #include <vector>
+#include <iostream>
+
+using namespace std;
 
 class Kruskals {
     public:
         Kruskals();
-        void makeKruskalsTree(Graph g);
+        void makeMST(Graph g);
         // findShortestPath();
 
     private:
-        DisjointSets ds;
-        PriorityQueue pq;
+        DisjointSets forest_;
+        PriorityQueue pq_;
         Graph min_span_tree_;
 };
