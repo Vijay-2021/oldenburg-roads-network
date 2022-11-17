@@ -12,10 +12,13 @@ class Kruskals {
     public:
         Kruskals();
         void makeMST(Graph g);
+        Graph getMST() const;
+        double getWeight() const;
         // findShortestPath();
 
     private:
         DisjointSets forest_;
         PriorityQueue pq_;
         Graph min_span_tree_;
+        double weight_;
 };

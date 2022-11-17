@@ -1,7 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include "../includes/Graph.hpp"
 #include "../lib/Kruskals.hpp"
-
+#include "dataManager.hpp"
 #include <iostream>
 
 using namespace std;
@@ -95,6 +95,43 @@ TEST_CASE("DisjointSets testFindAndSetUnion3", "[Kruskals]")
 }
 // @TODO Test cases for makeMST
 TEST_CASE("Kruskals makeMST", "[Kruskals]") {
-	REQUIRE(1 == 1);
+	Graph g;
+    g = loadGraph("../data/vertices.txt", "../data/edges.txt");
+	Kruskals k;
+	k.makeMST(g);
+	Graph t = k.getMST();
+	printEdgesToFile("kruskalsedges.txt", t);
+	printVerticesToFile("kruskalsvertices.txt", t);
+	REQUIRE(t.getNumEdges() == g.getNumVertices() - 1);
 }
 
+TEST_CASE("Kruskal Weight Test Simple", "[Kruskals]") {
+	Graph g;
+	g = loadGraph("../data/vertices_simple.txt", "../data/edges_simple.txt");
+	Kruskals k;
+	k.makeMST(g);
+	Graph t = k.getMST();
+	printEdgesToFile("test_simple_edges.txt", t);
+	REQUIRE(k.getWeight() == 16.0);
+}
+
+TEST_CASE("Kruskal Weight Medium 1", "[Kruskals]") {
+	Graph g;
+	g = loadGraph("../data/testvertices1.txt", "../data/testedges1.txt");
+	Kruskals k;
+	k.makeMST(g);
+	Graph t = k.getMST();
+	printEdgesToFile("test_one_edges.txt", t);
+	REQUIRE(k.getWeight() == 21.0);
+}
+
+TEST_CASE("Kruskal Weight Test Medium 2", "[Kruskals]") {
+	Graph g;
+	g = loadGraph("../data/vertices_medium.txt", "../data/edges_medium.txt");
+	Kruskals k;
+	k.makeMST(g);
+	Graph t = k.getMST();
+	printEdgesToFile("test_two_edges.txt", t);
+	REQUIRE(t.getNumEdges() == 10);
+	REQUIRE(k.getWeight() == 41.0);
+}
