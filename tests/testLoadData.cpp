@@ -1,6 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include "Graph.hpp"
 #include "dataManager.hpp"
+#include <algorithm>
 
 TEST_CASE("Test Test cases 4", "[weight=1][part=1]") {
     REQUIRE(2 == 2);
@@ -10,7 +11,7 @@ TEST_CASE("Test Loads Vertices and Edges", "[weight=1][part=1]") {
     Graph g; 
     g = loadGraph("../data/vertices.txt", "../data/edges.txt");
     REQUIRE(g.getNumVertices() == 6105);
-    REQUIRE(g.getNumEdges() == 7035);
+    REQUIRE(g.getNumEdges() == 7035*2);
 }
 
 TEST_CASE("Test Are Adjacent", "[weight=1][part=1]") {
@@ -50,5 +51,25 @@ TEST_CASE("Test Weights are correct", "[weight=1][part=1]") {
     //test reverse: 
     REQUIRE(g.areAdjacent(5996,5994));
     REQUIRE(g.areAdjacent(2162, 2159));    
+
+}
+
+TEST_CASE("Test adjacent works", "[weight=1][part=1]") {
+    //Test that adjacent returns a valid list of adjacent vertices to the provided vertex  
+    Graph g;
+    g = loadGraph("../data/vertices.txt", "../data/edges.txt");
+    std::vector<int> adjacentList = g.adjacent(2444);
+
+    //Correct adjacent vertices
+    REQUIRE(adjacentList.size() == 3);
+    REQUIRE(std::find(adjacentList.begin(), adjacentList.end(), 2460) != adjacentList.end());
+    REQUIRE(std::find(adjacentList.begin(), adjacentList.end(), 2476) != adjacentList.end());
+    REQUIRE(std::find(adjacentList.begin(), adjacentList.end(), 2433) != adjacentList.end());
+    
+    //One adjacent vertices
+    adjacentList = g.adjacent(5435);
+    REQUIRE(adjacentList.size() == 1);
+    REQUIRE(std::find(adjacentList.begin(), adjacentList.end(), 5429) != adjacentList.end());
+
 
 }

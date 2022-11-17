@@ -37,6 +37,17 @@ Graph loadGraph(std::string vertices_file, std::string edges_file) {
             istream_iterator<std::string> line_end;
             istream_iterator<std::string> temp_itr = line_begin;
             edge_output.push_back(std::vector<std::string>(line_begin, line_end));
+
+            //Create an edge that in the reverse order since this is an undirected graph
+            stringstream line_ss2(edge_line);
+            istream_iterator<std::string> line_begin2(line_ss2);
+            istream_iterator<std::string> line_end2;
+            istream_iterator<std::string> temp_itr2 = line_begin;
+            std::vector<std::string> reverse(line_begin2, line_end2);
+            std::string temp = reverse.at(1);
+            reverse.at(1) = reverse.at(2);
+            reverse.at(2) = temp;
+            edge_output.push_back(reverse);
         }
     }
     edge_file.close();
