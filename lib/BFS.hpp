@@ -11,5 +11,5 @@ class BFS {
         void BFS_helper(int vertex);
         Graph* graph_;
         std::vector<bool> visited_vertices_;
-        std::vector<int> visited_edges_;
+        std::vector<std::vector<int>> visited_edges_;
 };
