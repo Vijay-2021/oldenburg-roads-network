@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "unordered_map": "cpp",
+        "chrono": "cpp",
+        "cmath": "cpp",
+        "array": "cpp",
+        "string_view": "cpp"
+    }
+}
