@@ -4,6 +4,42 @@
 Graph::Graph(): num_edges_(0), num_vertices_(0), row_ptr_size_(0), vertice_array_(nullptr), adjacency_matrix_cols_(nullptr), adjacency_matrix_data_(nullptr), adjacency_matrix_rowptr_(nullptr) {
 
 }
+
+Graph::Graph(std::vector<int> vertice_input, std::vector<Edge> edge_input) {
+    num_vertices_ = vertice_input.size();
+    row_ptr_size_ = num_vertices_ + 1;
+    vertice_array_ = new int[num_vertices_];
+    for (unsigned i = 0; i < vertice_input.size(); i++) {
+        // we simply assign vertice_array_[i] the value of i, however in the future we will want to process the location information for our A* heuristic 
+        vertice_array_[i] = vertice_input[i]; // assume the 0th index contains the vertex value
+    }
+    num_edges_ = edge_input.size();
+    std::sort(edge_input.begin(), edge_input.end(),
+          [](const Edge& one, const Edge& two) {
+            return one.v1 < two.v1;
+    });
+    adjacency_matrix_cols_ = new int[num_edges_];
+    adjacency_matrix_data_ = new double[num_edges_];
+    adjacency_matrix_rowptr_ = new int[row_ptr_size_];
+    int curr_vertex = 0; // we start "behind" in CSR
+    int total = 0;
+    for (unsigned i = 0; i < edge_input.size(); i++ ) {
+        int first_vertice = edge_input[i].v1;
+        int second_vertice = edge_input[i].v2;
+        double value = edge_input[i].distance;
+        adjacency_matrix_cols_[i] = second_vertice;
+        adjacency_matrix_data_[i] = value;
+        if (first_vertice != curr_vertex) {
+            while (curr_vertex < first_vertice) {
+                 adjacency_matrix_rowptr_[curr_vertex] = total;
+                 curr_vertex ++;
+            }
+        } 
+        total++;
+    }
+    adjacency_matrix_rowptr_[curr_vertex + 1] = num_edges_;
+}
+
 Graph::Graph(std::vector<std::vector<std::string>> vertice_input, std::vector<std::vector<std::string>> edge_input) {
     num_vertices_ = vertice_input.size();
     row_ptr_size_ = num_vertices_ + 1;
@@ -30,13 +66,16 @@ Graph::Graph(std::vector<std::vector<std::string>> vertice_input, std::vector<st
         adjacency_matrix_data_[i] = value;
         if (first_vertice != curr_vertex) {
             while (curr_vertex < first_vertice) {
-                 adjacency_matrix_rowptr_[curr_vertex] = total;
-                 curr_vertex ++;
+                adjacency_matrix_rowptr_[curr_vertex] = total;
+                curr_vertex ++;
             }
         } 
         total++;
     }
-    adjacency_matrix_rowptr_[curr_vertex + 1] = num_edges_;
+    while (curr_vertex <= num_vertices_) {
+        adjacency_matrix_rowptr_[curr_vertex] = num_edges_;
+        curr_vertex++;
+    }
 
 }
 
@@ -97,6 +136,10 @@ int Graph::getNumEdges() const {
 }
 int Graph::getNumVertices() const {
     return num_vertices_;
+}
+
+int* Graph::getVertices() const { 
+    return vertice_array_;
 }
 int* Graph::getAdjColsArray() const {
     return adjacency_matrix_cols_;
