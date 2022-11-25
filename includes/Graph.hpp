@@ -1,10 +1,12 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "Edge.h"
 class Graph{
     public:
         Graph();
         Graph(std::vector<std::vector<std::string>> vertice_input, std::vector<std::vector<std::string>> edge_input);
+        Graph(std::vector<int> vertice_input, std::vector<Edge> edge_input);
         Graph(const Graph& rhs);
         ~Graph();    
         Graph& operator=(const Graph& rhs);
@@ -15,7 +17,13 @@ class Graph{
         bool areAdjacent(int vertex1, int vertex2) const;
         double edgeValue(int idx) const;
         int indexOfAdjacentEdge(int vertex1, int vertex2) const;
+        
         std::vector<int> adjacent(int vertex) const;
+        int* getAdjColsArray() const;
+        double* getAdjDataArray() const;
+        int* getAdjRowPtrArray() const;
+        int* getVertices() const;
+
     private:
         void copyGraph(const Graph& rhs);
         void deleteGraph();

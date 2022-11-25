@@ -54,3 +54,31 @@ Graph loadGraph(std::string vertices_file, std::string edges_file) {
     vertice_file.close();
     return Graph(vertice_output, edge_output);
 }
+
+void printEdgesToFile(std::string filename, const Graph& g) {
+    std::fstream out_file;
+    out_file.open(filename, std::ios_base::out);
+    int* cols = g.getAdjColsArray();
+    double* distances = g.getAdjDataArray();
+    int* rowptr = g.getAdjRowPtrArray();
+    int row = 0;
+    int counter = 0;
+    for (int i = 0; i < g.getNumEdges(); i++) {
+        out_file<<row<<","<<cols[i]<<","<<distances[i]<<std::endl;
+        counter++;
+        while (counter >= rowptr[row]) {
+            row++;
+        }
+    }
+    out_file.close();
+}
+void printVerticesToFile(std::string filename, const Graph& g) {
+    std::fstream out_file;
+    out_file.open(filename,std::ios_base::out);
+    int* vertices = g.getVertices();
+    for(int i=0;i<g.getNumVertices();i++)
+    {
+        out_file<<vertices[i]<<std::endl;
+    }
+    out_file.close();
+}
