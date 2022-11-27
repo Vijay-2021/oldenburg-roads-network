@@ -17,3 +17,9 @@ TEST_CASE("Correct Number of Components 2", "[BFS]") {
     REQUIRE(bfs.countComponents(&g) == 1);
 }
 
+TEST_CASE("Correct Number of Components Our Dataset", "[BFS]") {
+    Graph g;
+    BFS bfs;
+    g = loadGraph("../data/vertices.txt", "../data/edges.txt");
+    REQUIRE(bfs.countComponents(&g) == 1);
+}

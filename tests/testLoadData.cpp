@@ -3,10 +3,6 @@
 #include "dataManager.hpp"
 #include <algorithm>
 
-TEST_CASE("Test Test cases 4", "[weight=1][part=1]") {
-    REQUIRE(2 == 2);
-}
-
 TEST_CASE("Test Loads Vertices and Edges", "[weight=1][part=1]") {
     Graph g; 
     g = loadGraph("../data/vertices.txt", "../data/edges.txt");
