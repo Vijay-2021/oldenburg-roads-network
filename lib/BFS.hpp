@@ -5,14 +5,11 @@
 class BFS {
     public:
         BFS();
-        std::unordered_map<int, double> performBFS(Graph* g); //Outputs a map of the path length to get to each node from the start node using BFS
-        int countComponents(Graph* g); //Count number of components using BFS
-       
+        std::unordered_map<int, double> performBFS(const Graph& g); //Outputs a map of the distances to get to each node from the start node using BFS
+        int countComponents(const Graph& g); //Count number of components using BFS
 
     private:
-        void BFS_helper(int vertex);
-        void BFS_helper(int vertex, std::unordered_map<int, double>& distances);
-        Graph* graph_;
+        void BFS_helper(const Graph&, int vertex); //Helper to run BFS on graph
+        void BFS_helper(const Graph&, int vertex, std::unordered_map<int, double>& distances); //Helper to check that BFS is traversing correctly
         std::vector<bool> visited_vertices_;
-        std::vector<std::vector<int>> visited_edges_;
 };
