@@ -18,7 +18,7 @@ class Graph{
         double edgeValue(int idx) const;
         int indexOfAdjacentEdge(int vertex1, int vertex2) const;
         
-        std::vector<int> adjacent(int vertex) const;
+        std::vector<int> adjacent(int vertex) const; //For very sparse graphs, runtime is constant
         int* getAdjColsArray() const;
         double* getAdjDataArray() const;
         int* getAdjRowPtrArray() const;

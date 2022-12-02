@@ -12,6 +12,6 @@ int main(){
     g = loadGraph("../data/vertices.txt", "../data/edges.txt");
     BFS bfs;
 
-    std::cout << "Number of Components: " << bfs.countComponents(&g) << std::endl;
+    std::cout << "Number of Components: " << bfs.countComponents(g) << std::endl;
     return 0;
 }
