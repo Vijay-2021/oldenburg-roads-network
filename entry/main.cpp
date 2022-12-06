@@ -53,3 +53,4 @@ int main(int argc, char* argv[]) {
         BFS bfs;
         std::cout << "Number of Components: " << bfs.countComponents(g) << std::endl;
     }
+}
