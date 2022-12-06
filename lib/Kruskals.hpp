@@ -2,7 +2,8 @@
 
 #include "../includes/Graph.hpp"
 #include "../includes/DisjointSets.h"
-#include "../includes/PriorityQueue.h"
+#include "../includes/PriorityQueue.hpp"
+#include "../includes/Edge.h"
 #include <vector>
 #include <iostream>
 
@@ -18,7 +19,7 @@ class Kruskals {
 
     private:
         DisjointSets forest_;
-        PriorityQueue pq_;
+        PriorityQueue<Edge> pq_;
         Graph min_span_tree_;
         double weight_;
 };

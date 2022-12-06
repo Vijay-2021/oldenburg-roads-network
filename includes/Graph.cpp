@@ -1,16 +1,23 @@
 #include "Graph.hpp"
 #include <algorithm>
 #include <iostream> 
+#include <cmath> 
+
+
 Graph::Graph(): num_edges_(0), num_vertices_(0), row_ptr_size_(0), vertice_array_(nullptr), adjacency_matrix_cols_(nullptr), adjacency_matrix_data_(nullptr), adjacency_matrix_rowptr_(nullptr) {
 
 }
 
-Graph::Graph(std::vector<int> vertice_input, std::vector<Edge> edge_input) {
+Graph::Graph(std::vector<int> vertice_input, std::vector<double> x_locs, std::vector<double> y_locs , std::vector<Edge> edge_input) {
     num_vertices_ = vertice_input.size();
     row_ptr_size_ = num_vertices_ + 1;
     vertice_array_ = new int[num_vertices_];
+    x_locs_ = new double[num_vertices_];
+    y_locs_ = new double[num_vertices_];
     for (unsigned i = 0; i < vertice_input.size(); i++) {
         // we simply assign vertice_array_[i] the value of i, however in the future we will want to process the location information for our A* heuristic 
+        x_locs_[i] = x_locs[i];
+        y_locs_[i] = y_locs[i];
         vertice_array_[i] = vertice_input[i]; // assume the 0th index contains the vertex value
     }
     num_edges_ = edge_input.size();
@@ -44,9 +51,18 @@ Graph::Graph(std::vector<std::vector<std::string>> vertice_input, std::vector<st
     num_vertices_ = vertice_input.size();
     row_ptr_size_ = num_vertices_ + 1;
     vertice_array_ = new int[num_vertices_];
+    x_locs_ = new double[num_vertices_];
+    y_locs_ = new double[num_vertices_];
     for (unsigned i = 0; i < vertice_input.size(); i++) {
         // we simply assign vertice_array_[i] the value of i, however in the future we will want to process the location information for our A* heuristic 
         vertice_array_[i] = std::stoi(vertice_input[i][0]); // assume the 0th index contains the vertex value
+        if (vertice_input[i].size() < 3) {
+            x_locs_[i] = 0;
+            y_locs_[i] = 0;
+        } else {
+            x_locs_[i] = std::stod(vertice_input[i][1]);
+            y_locs_[i] = std::stod(vertice_input[i][2]);
+        }
     }
     num_edges_ = edge_input.size();
     std::sort(edge_input.begin(), edge_input.end(),
@@ -104,8 +120,13 @@ void Graph::copyGraph(const Graph& rhs) {
     adjacency_matrix_data_ = new double[num_edges_];
     adjacency_matrix_rowptr_ = new int[row_ptr_size_];
     vertice_array_ = new int[num_vertices_];
+    x_locs_ = new double[num_vertices_];
+    y_locs_ = new double[num_vertices_];
+
     for (int i = 0; i < num_vertices_; i++) {
         vertice_array_[i] = rhs.vertice_array_[i];
+        x_locs_[i] = rhs.x_locs_[i];
+        y_locs_[i] = rhs.y_locs_[i];
     }
     for (int i = 0; i < num_edges_; i++) {
         adjacency_matrix_cols_[i] = rhs.adjacency_matrix_cols_[i];
@@ -124,11 +145,27 @@ void Graph::deleteGraph() {
     if (num_vertices_ > 0) {
         delete[] adjacency_matrix_rowptr_;
         delete[] vertice_array_;
+        delete[] x_locs_;
+        delete[] y_locs_;
     }
     adjacency_matrix_rowptr_ = nullptr;
     adjacency_matrix_data_ = nullptr;
     adjacency_matrix_cols_ = nullptr;
     vertice_array_ = nullptr;
+}
+
+double Graph::getEuclideanDist(int first, int second) const {
+    
+    double x_dist = x_locs_[first] - x_locs_[second];
+    double y_dist = y_locs_[first] - y_locs_[second];
+    return std::sqrt(std::pow(x_dist, 2) + std::pow(y_dist, 2));
+}
+
+double Graph::getX(int vertex) const {
+    return x_locs_[vertex];
+}
+double Graph::getY(int vertex) const {
+    return y_locs_[vertex];
 }
 
 int Graph::getNumEdges() const {

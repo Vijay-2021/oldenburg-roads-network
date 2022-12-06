@@ -7,7 +7,7 @@ set(CMAKE_LINKER "/usr/bin/clang++")
 project(oldenburg_roads)
 
 # Specify C++ Standard.
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Specify warnings for all builds.

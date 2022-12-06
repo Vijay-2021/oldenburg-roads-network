@@ -14,9 +14,12 @@ double Kruskals::getWeight() const{
 }
 
 void Kruskals::makeMST(Graph g) {
+    std::cout << "here? " << std::endl;
     unsigned N = g.getNumVertices();
     forest_.addelements(N);
     std::vector<int> vertices;
+    std::vector<double> x_locs;
+    std::vector<double> y_locs;
     int* cols = g.getAdjColsArray();
     double* distances = g.getAdjDataArray();
     int* rowptr = g.getAdjRowPtrArray();
@@ -55,7 +58,15 @@ void Kruskals::makeMST(Graph g) {
         
     }
     std::sort(vertices.begin(), vertices.end());
-    min_span_tree_ = Graph(vertices, edges);
+    for (unsigned i = 0; i < vertices.size(); i++) {
+        x_locs.push_back(g.getX(vertices[i]));
+        y_locs.push_back(g.getY(vertices[i]));
+    }
+    std::cout << "made it here " << std::endl;
+    std::cout << vertices.size() << std::endl;
+    std::cout << edges.size() << std::endl;
+    std::cout << "end of this block " << std::endl;
+    min_span_tree_ = Graph(vertices, x_locs, y_locs, edges);
 }
 
 Graph Kruskals::getMST() const {

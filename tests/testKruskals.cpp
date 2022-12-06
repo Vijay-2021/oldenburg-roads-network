@@ -1,13 +1,16 @@
 #include <catch2/catch_test_macros.hpp>
 #include "../includes/Graph.hpp"
 #include "../lib/Kruskals.hpp"
+#include "../includes/PriorityQueue.hpp"
+#include "../includes/Edge.h"
 #include "dataManager.hpp"
 #include <iostream>
 
 using namespace std;
 
+
 TEST_CASE("Test Priority Queue Insertion", "[Kruskals]") {
-    PriorityQueue pq;
+    PriorityQueue<Edge> pq;
     Edge e1 = {0, 1, 5.0};
     pq.insert(e1);
     REQUIRE(pq.getElems().size() == 1);
@@ -25,7 +28,7 @@ TEST_CASE("Test Priority Queue Insertion", "[Kruskals]") {
     REQUIRE(matches == true);
 }
 TEST_CASE("Test Priority Queue Removal", "[Kruskals]") {
-    PriorityQueue pq;
+    PriorityQueue<Edge> pq;
 
     Edge e2 = {0, 1, 5.0}; Edge e3 = {2, 3, 7.0}; Edge e4 = {0, 2, 2.0}; 
     Edge e5 = {4, 5, 9.0}; Edge e6 = {2, 4, 8.0}; Edge e7 = {0, 5, 1.0};
@@ -99,9 +102,11 @@ TEST_CASE("Kruskals makeMST", "[Kruskals]") {
     g = loadGraph("../data/vertices.txt", "../data/edges.txt");
 	Kruskals k;
 	k.makeMST(g);
+	std::cout << "made it past here " << std::endl;
 	Graph t = k.getMST();
 	printEdgesToFile("kruskalsedges.txt", t);
 	printVerticesToFile("kruskalsvertices.txt", t);
+	
 	REQUIRE(t.getNumEdges() == g.getNumVertices() - 1);
 }
 
