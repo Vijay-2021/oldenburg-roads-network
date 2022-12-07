@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../includes/Graph.hpp"
-#include "../includes/DisjointSets.h"
+#include "../includes/DisjointSets.hpp"
 #include "../includes/PriorityQueue.hpp"
 #include "../includes/Edge.h"
 #include <vector>
@@ -15,6 +15,7 @@ class Kruskals {
         void makeMST(Graph g);
         Graph getMST() const;
         double getWeight() const;
+        double getDensity() const;
         // findShortestPath();
 
     private:

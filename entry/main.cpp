@@ -5,13 +5,52 @@
 #include "dataManager.hpp"
 #include <iostream>
 
-int main(){
-    std::cout << "main is running " << std::endl;
+static void show_usage(std::string name)
+{
+    std::cerr << "Usage: " << name
+              << " [path to vertices.txt] [path to edges.txt]"
+              << std::endl;
+}
 
-    Graph g;
-    g = loadGraph("../data/vertices.txt", "../data/edges.txt");
-    BFS bfs;
 
-    std::cout << "Number of Components: " << bfs.countComponents(g) << std::endl;
-    return 0;
+int main(int argc, char* argv[]) {
+    std::string inVerticesFile = "";
+    std::string inEdgeFile = "";
+
+    if (argc < 3 && argc > 1) {
+        show_usage(argv[0]);
+        return 1;
+    }
+
+    if (argc == 1) {
+        inVerticesFile = "../data/vertices.txt";
+        inEdgeFile = "../data/edges.txt";
+
+        std::cout << "main is running " << std::endl;
+
+        Graph g;
+        g = loadGraph(inVerticesFile, inEdgeFile);
+
+        BFS bfs;
+        std::cout << "Number of Components: " << bfs.countComponents(g) << std::endl;
+    }
+
+    if (argc == 3) {
+        inVerticesFile = argv[1];
+        inEdgeFile = argv[2];
+
+        std::cout << "main is running " << std::endl;
+
+        Graph g;
+        g = loadGraph(inVerticesFile, inEdgeFile);
+
+        if (!g.getNumVertices()) {
+            cerr << "ERROR: Cannot parse graph from input files " << inVerticesFile << " " << inEdgeFile
+            << endl;
+            exit(2);
+        }
+
+        BFS bfs;
+        std::cout << "Number of Components: " << bfs.countComponents(g) << std::endl;
+    }
 }

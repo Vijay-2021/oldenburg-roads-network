@@ -66,6 +66,4 @@ TEST_CASE("Test adjacent works", "[weight=1][part=1]") {
     adjacentList = g.adjacent(5435);
     REQUIRE(adjacentList.size() == 1);
     REQUIRE(std::find(adjacentList.begin(), adjacentList.end(), 5429) != adjacentList.end());
-
-
 }

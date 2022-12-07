@@ -197,10 +197,6 @@ bool Graph::areAdjacentHelper(int vertex1, int vertex2) const {
         start_idx = adjacency_matrix_rowptr_[vertex1 - 1];
     }
     int end_idx = adjacency_matrix_rowptr_[vertex1];
-    if (vertex1 == 2262) {
-        std::cout << "start index: " << start_idx << std::endl;
-        std::cout << "end index: " << end_idx << std::endl;
-    }
     for (int i = start_idx; i < end_idx; i++) {
         if (adjacency_matrix_cols_[i] == vertex2) {
             return true;

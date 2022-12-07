@@ -1,6 +1,6 @@
 #include "Astar.hpp"
 #include "../includes/PriorityQueue.hpp"
-#include "../includes/DisjointSets.h"
+#include "../includes/DisjointSets.hpp"
 #include "../includes/Edge.h"
 
 #include <cmath>

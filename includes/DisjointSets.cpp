@@ -1,5 +1,5 @@
 /* Your code here! */
-#include "../includes/DisjointSets.h"
+#include "../includes/DisjointSets.hpp"
 
 void DisjointSets::addelements(int num) {
     for (int i = 0; i < num; i++) {
