@@ -9,7 +9,41 @@
   
 # Overview
 
+Our final project uses the City of Oldenburg Road Network Dataset from https://www.cs.utah.edu/~lifeifei/SpatialDataset.htm. The format of the edges dataset for the Oldenburg Road Network is a file containing four space-separated values which represent the Edge ID, Start Node ID, End Node ID, L2 Distance, respectively. The format of the vertices dataset for the Oldenburg Road Network is a file containing three space-separate values which represent Node ID, Normalized X Coordinate, Normalized Y Coordinate, respectively.
+
+
 # Github Organization
+
+## Presentation Video
+You can find our presentation video here: (todo)
+
+## Code
+Our code follows a very similar structure to the CS225 MPs.
+### data folder
+Inside the data folder, you can find the dataset we used for our project as well as the datasets we used to test our algorithms. Our custom datasets tests specific edge cases in our algorithm implementations.
+
+### entry folder
+Here you can find the `main.cpp` file that used to create the main executable for our program. 
+
+### includes folder
+Here you can find the custom data structures we used in our algorithms. For example, it contains the disjoint sets and priority queue we use A* Search Algorithm and Kruskal's MST. This folder also contains our CSR format graph implementation and a data manager class that is used to load data from the input files into our graph implementation.
+
+### lib folder
+The `lib` folder holds our implementation for all three algorithms we chose for our project in the `team-proposal.md`. 
+
+`BFS.hpp/BFS.cpp`: A BFS class that has a function to perform a BFS traversal (and returns a map of distances from the first node to all the other nodes) and a function that counts the number of components on an input graph using BFS. To use the functions, create a BFS object and call the functions with a graph object.
+
+`AStar.hpp/AStar.cpp`: (todo)
+
+`Kruskals.hpp/Kruskals.cpp`: (todo)
+
+`Node.h`: Holds a Node struct that is used in A*
+
+### tests folder
+All the test files can be found under this folder. Each test file tests our algorithms against the original dataset (or a subset of it) and our own custom datasets that can also be found in the `data` folder. 
+
+### Other Files
+Our README.md, results.md, team-contract.md, and team-proposal.md can be found in the base directory of the repo. They contain our documentation and deliverables for our project. 
 
 # Usage
 The files in this repository can be ran in the CS225 Docker environment. 
@@ -41,7 +75,7 @@ $ main [path to vertices.txt] [path to edges.txt]
 ```
 If you do not provide the two necessary files, the executable will default to the dataset we used for our project.
 Running the executable will run our three graph algorithms (BFS, Kruskals, and AStar) on a graph derived from the input files. It will then output
-the number of components, minimal spanning tree, and .
+the number of components, minimal spanning tree, and . (todo)
 
 ### Building Tests
 In the build directory you created above run the following commands.
@@ -51,4 +85,8 @@ $ make tests
 The tests executable should now be created and you can use the following command to run it:
 ```console
 $ ./tests
+```
+You can also run test cases for specific algorithms. To do so, replace name with the name of the algorithm, such as BFS, Kruskals, or AStar.
+```console
+$ ./tests [name]
 ```
