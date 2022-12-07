@@ -64,7 +64,7 @@ void printEdgesToFile(std::string filename, const Graph& g) {
     int row = 0;
     int counter = 0;
     for (int i = 0; i < g.getNumEdges(); i++) {
-        out_file<<row<<","<<cols[i]<<","<<distances[i]<<std::endl;
+        out_file<<row<<","<<cols[i]<<","<<distances[i]<<std::endl; // print in CSV format
         counter++;
         while (counter >= rowptr[row]) {
             row++;
@@ -78,7 +78,7 @@ void printVerticesToFile(std::string filename, const Graph& g) {
     int* vertices = g.getVertices();
     for(int i=0;i<g.getNumVertices();i++)
     {
-        out_file<<vertices[i]<<std::endl;
+        out_file<<vertices[i]<<std::endl; // just print indices not x, y coords
     }
     out_file.close();
 }

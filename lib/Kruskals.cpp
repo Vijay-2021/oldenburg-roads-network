@@ -75,5 +75,5 @@ Graph Kruskals::getMST() const {
 }
 
 double Kruskals::getDensity() const {
-    return (weight_ / (double)min_span_tree_.getNumEdges()) / (std::sqrt(10000*10000 + 10000*10000)); 
+    return (weight_ / (double)min_span_tree_.getNumEdges()) / (std::sqrt(kMaxXDistance*kMaxXDistance+ kMaxYDistance*kMaxYDistance)); 
 }

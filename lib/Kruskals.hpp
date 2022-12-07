@@ -44,4 +44,6 @@ class Kruskals {
         PriorityQueue<Edge> pq_;
         Graph min_span_tree_;
         double weight_;
+        static constexpr double kMaxXDistance = 10000;
+        static constexpr double kMaxYDistance = 10000;
 };
