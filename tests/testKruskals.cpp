@@ -102,7 +102,6 @@ TEST_CASE("Kruskals makeMST", "[Kruskals]") {
     g = loadGraph("../data/vertices.txt", "../data/edges.txt");
 	Kruskals k;
 	k.makeMST(g);
-	std::cout << "made it past here " << std::endl;
 	Graph t = k.getMST();
 	printEdgesToFile("kruskalsedges.txt", t);
 	printVerticesToFile("kruskalsvertices.txt", t);

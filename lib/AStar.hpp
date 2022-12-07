@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../includes/PriorityQueue.hpp"
-#include "../includes/DisjointSets.h"
+#include "../includes/DisjointSets.hpp"
 #include "../includes/Edge.h"
 #include <map>
 #include <unordered_map>
