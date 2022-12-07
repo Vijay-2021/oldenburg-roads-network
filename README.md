@@ -33,9 +33,9 @@ The `lib` folder holds our implementation for all three algorithms we chose for 
 
 `BFS.hpp/BFS.cpp`: A BFS class that has a function to perform a BFS traversal (and returns a map of distances from the first node to all the other nodes) and a function that counts the number of components on an input graph using BFS. To use the functions, create a BFS object and call the functions with a graph object.
 
-`AStar.hpp/AStar.cpp`: (todo)
+`AStar.hpp/AStar.cpp`: An AStar class that takes in a graph object in the constructor. Creating the AStar object will run A* on the graph passed in. The class has a function that retrieves the shortest path once the algorithm runs on the graph.
 
-`Kruskals.hpp/Kruskals.cpp`: (todo)
+`Kruskals.hpp/Kruskals.cpp`: A Kruskals class that has a function to get the minimal spanning tree as well as getter functions for the weight and edges of the minimum spanning tree. To make the MST, create a Kruskals object and call the function with a graph object.
 
 `Node.h`: Holds a Node struct that is used in A*
 
@@ -71,11 +71,15 @@ $ make main
 ```
 An executable called `main` should now be created. You run it as follows:
 ```console
-$ main [path to vertices.txt] [path to edges.txt]
+$ main [path to vertices.txt] [path to edges.txt] [start vertex] [stop vertex]
 ```
-If you do not provide the two necessary files, the executable will default to the dataset we used for our project.
+You can also run it as:
+```console
+$ ./main
+```
+If you do not provide the two necessary files and a start and end vertex, the executable will default to the dataset we used for our project and not run A*.
 Running the executable will run our three graph algorithms (BFS, Kruskals, and AStar) on a graph derived from the input files. It will then output
-the number of components, minimal spanning tree, and . (todo)
+the number of components (using BFS), density (using Kruskal's MST), and number of roads on the shortest path between the two provided points (using A*).
 
 ### Building Tests
 In the build directory you created above run the following commands.
