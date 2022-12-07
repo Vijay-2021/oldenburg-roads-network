@@ -11,7 +11,7 @@
 
 We are trying to understand the underlying structure of the city of Oldenburg. 
 
-Our final project uses the City of Oldenburg Road Network Dataset from https://www.cs.utah.edu/~lifeifei/SpatialDataset.htm. The format of the edges dataset for the Oldenburg Road Network is a file containing four space-separated values which represent the Edge ID, Start Node ID, End Node ID, L2 Distance, respectively. The format of the vertices dataset for the Oldenburg Road Network is a file containing three space-separate values which represent Node ID, Normalized X Coordinate, Normalized Y Coordinate, respectively.
+Our final project uses the City of Oldenburg Road Network Dataset from https://www.cs.utah.edu/~lifeifei/SpatialDataset.htm. The format of the edges dataset for the Oldenburg Road Network is a file containing four space-separated values representing the Edge ID, Start Node ID, End Node ID, and L2 Distance, respectively. The format of the vertices dataset for the Oldenburg Road Network is a file containing three space-separate values, which represent Node ID, Normalized X Coordinate, and Normalized Y Coordinate, respectively.
 
 
 # Github Organization
@@ -67,7 +67,7 @@ The files in this repository can be ran in the CS225 Docker environment.
 At this point, the build directory should be setup and you should be able to build our `main` executable and test suite. 
 
 ### Building Main Executable
-In the build directory you created above run the following commands.
+In the build directory you created above, run the following commands.
 ```console
 $ make main
 ```
