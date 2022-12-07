@@ -94,3 +94,4 @@ You can also run test cases for specific algorithms. To do so, replace name with
 ```console
 $ ./tests [name]
 ```
+Our tests cases for AStar consists of checking that A* works on our dataset and a smaller custom dataset we created. We check that the shortest path matches our own calculated shortest paths. The test cases for BFS consists of checking that BFS returns the correct number of components for our dataset and two smaller custom dataset. We also check that BFS is traversing correctly using a map of distances that is returned. The test cases for Kruskals makes sure our disjoint sets and priority queue implementations work and that the algorithm returns the correct MST from three smaller custom dataset. Finally, the test cases for our graph implementation checks that the files are loaded correctly and the get adjacent vertices and get weight functions work.
