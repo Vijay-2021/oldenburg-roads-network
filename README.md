@@ -12,7 +12,7 @@
 # Github Organization
 
 # Usage
-The files in this repository can be ran in the CS225 docker environment. 
+The files in this repository can be ran in the CS225 Docker environment. 
 
 1. To build and run the main executable, first clone the repository. 
   ```console
