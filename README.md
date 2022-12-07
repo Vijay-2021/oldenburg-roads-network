@@ -15,19 +15,19 @@
 The files in this repository can be ran in the CS225 Docker environment. 
 
 1. To build and run the main executable, first clone the repository. 
-  ```console
-  $ git clone https://github.com/Vijay-2021/oldenburg-roads-network.git
-  ```
+    ```console
+    $ git clone https://github.com/Vijay-2021/oldenburg-roads-network.git
+    ```
 2. Navigate into the `oldenburg-roads-network` folder that was created.
-  ```console
-  $ cd oldenburg-roads-network
-  ```
+    ```console
+    $ cd oldenburg-roads-network
+    ```
 3. Running commands to setup the build folder and cmake.
-  ```console
-  $ mkdir build
-  $ cd build
-  $ cmake ..
-  ```
+    ```console
+    $ mkdir build
+    $ cd build
+    $ cmake ..
+    ```
 At this point the build directory should be setup and you should be able to build our `main` executable and test suite. 
 
 ### Building Main Executable
