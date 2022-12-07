@@ -9,6 +9,8 @@
   
 # Overview
 
+We are trying to understand the underlying structure of the city of Oldenburg. 
+
 Our final project uses the City of Oldenburg Road Network Dataset from https://www.cs.utah.edu/~lifeifei/SpatialDataset.htm. The format of the edges dataset for the Oldenburg Road Network is a file containing four space-separated values which represent the Edge ID, Start Node ID, End Node ID, L2 Distance, respectively. The format of the vertices dataset for the Oldenburg Road Network is a file containing three space-separate values which represent Node ID, Normalized X Coordinate, Normalized Y Coordinate, respectively.
 
 
