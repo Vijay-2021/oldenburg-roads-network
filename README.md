@@ -22,7 +22,7 @@ You can find our presentation video here: (todo)
 ## Code
 Our code follows a very similar structure to the CS225 MPs.
 ### data folder
-Inside the data folder, you can find the dataset we used for our project as well as the datasets we used to test our algorithms. Our custom datasets tests specific edge cases in our algorithm implementations.
+Inside the data folder, you can find the dataset we used for our project as well as the datasets we used to test our algorithms. Our custom datasets test specific edge cases in our algorithm implementations.
 
 ### entry folder
 Here you can find the `main.cpp` file that used to create the main executable for our program. 
