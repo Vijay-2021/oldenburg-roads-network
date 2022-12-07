@@ -16,11 +16,11 @@ To parse the input data we will create a file reader. To confirm that the data i
 
 ## Data Storage
 
-We will use a graph to store the data. We will build an adjacency matrix of all the nodes / road intersections, stored as a 2d vector, where we are storing the weight of each edge as the distance between each intersection. The storage will take up O(n2) space, but this is acceptable due to the relatively small size of our dataset. When we look up whether two nodes are adjacent, we can achieve O(1) linear time. 
+We will use a graph to store the data. We will build a CSR (compressed sparse row) format adjacency matrix of all the nodes / road intersections, stored as several vectors, namely a vector storing the data of each non-zero entry, a vector storing the column indices of each entry, a vector storing how many entries there are on each row, and where we are storing the weight of each edge as the distance between each intersection. The storage will take up O(n) space because each vector is taking up the number of vertices. When we look up whether two nodes are adjacent, we can achieve O(1) linear time because the degree of each node is very low (there are about 7000 edges and 6000 vertices). 
 
 ## Algorithm 
 
-Kruskal’s Algorithm:
+### Kruskal’s Algorithm:
 - Usage:  We can get a set of paths between all road intersections with the least overall distance traveled, or the minimum spanning tree. We can use this to do our density calculations, which will help us determine how cluttered or spread out the road network is. To do the density calculation we will just sum up the weights along all of the edges and then divide by the total number of nodes. 
 - Data Structures:
     - Disjoint set
@@ -30,7 +30,7 @@ Kruskal’s Algorithm:
 - Estimated/Target Big O:
     - Time complexity: O(Elog(E)) Our Kruskal’s Algorithm will utilize a priority queue and a disjoint set. Building the priority queue will be O(E) and removing the minimum from the priority queue will be O(logE). The dominant term will come from looping through the edges and remove the minimum from the priority queue, which will be O(Elog(E)).
     - Space complexity O(E + V) We will need storage for our group of disjoint sets, to keep track of all our vertices, as well as all the edges in our priority queue, which becomes E + V.
-Breadth First Search:
+### Breadth First Search:
 - Usage: We will use Breadth First Search to find the number of connected components 
 - Heuristics: none
 - Function inputs: The graph
@@ -40,7 +40,7 @@ Breadth First Search:
 - Estimated/Target Big O:
     - Time complexity: O(V + E) 
     - Space complexity: O(V)
-A* Algorithm: 
+### A* Algorithm: 
 - Usage: We will use A* algorithm to determine the minimum distance between two nodes (first we will check if they are in the same connected component and then we will run A*). 
 - Heuristics: For A* we will use the minimum distance between the point and the goal. This is doable because we are given the normalized x and y coordinates for each point so we can just store this as part of our data structure. 
 - Function inputs: start, goal, evaluation heuristic
@@ -49,8 +49,8 @@ A* Algorithm:
     - PriorityQueue (implemented as an array) 
     - Map
 - Big O:
-    - Time complexity: O(E)
-    - Space complexity: O(V)
+    - Time complexity: O(b^d)
+    - Space complexity: O(b^d)
 
 
 ## Timeline

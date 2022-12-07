@@ -11,18 +11,18 @@
 
 We are trying to understand the underlying structure of the city of Oldenburg. 
 
-Our final project uses the City of Oldenburg Road Network Dataset from https://www.cs.utah.edu/~lifeifei/SpatialDataset.htm. The format of the edges dataset for the Oldenburg Road Network is a file containing four space-separated values which represent the Edge ID, Start Node ID, End Node ID, L2 Distance, respectively. The format of the vertices dataset for the Oldenburg Road Network is a file containing three space-separate values which represent Node ID, Normalized X Coordinate, Normalized Y Coordinate, respectively.
+Our final project uses the City of Oldenburg Road Network Dataset from https://www.cs.utah.edu/~lifeifei/SpatialDataset.htm. The format of the edges dataset for the Oldenburg Road Network is a file containing four space-separated values representing the Edge ID, Start Node ID, End Node ID, and L2 Distance, respectively. The format of the vertices dataset for the Oldenburg Road Network is a file containing three space-separate values, which represent Node ID, Normalized X Coordinate, and Normalized Y Coordinate, respectively.
 
 
 # Github Organization
 
 ## Presentation Video
-You can find our presentation video here: (todo)
+You can find our presentation video here: https://drive.google.com/file/d/1LzHt3nuzJyPdAuG151VQF4r0n_Xp2zrb/view?usp=sharing
 
 ## Code
 Our code follows a very similar structure to the CS225 MPs.
 ### data folder
-Inside the data folder, you can find the dataset we used for our project as well as the datasets we used to test our algorithms. Our custom datasets tests specific edge cases in our algorithm implementations.
+Inside the data folder, you can find the dataset we used for our project as well as the datasets we used to test our algorithms. Our custom datasets test specific edge cases in our algorithm implementations.
 
 ### entry folder
 Here you can find the `main.cpp` file that used to create the main executable for our program. 
@@ -64,10 +64,10 @@ The files in this repository can be ran in the CS225 Docker environment.
     $ cd build
     $ cmake ..
     ```
-At this point the build directory should be setup and you should be able to build our `main` executable and test suite. 
+At this point, the build directory should be setup and you should be able to build our `main` executable and test suite. 
 
 ### Building Main Executable
-In the build directory you created above run the following commands.
+In the build directory you created above, run the following commands.
 ```console
 $ make main
 ```
@@ -96,4 +96,4 @@ You can also run test cases for specific algorithms. To do so, replace name with
 ```console
 $ ./tests [name]
 ```
-Our tests cases for AStar consists of checking that A* works on our dataset and a smaller custom dataset we created. We check that the shortest path matches our own calculated shortest paths. The test cases for BFS consists of checking that BFS returns the correct number of components for our dataset and two smaller custom dataset. We also check that BFS is traversing correctly using a map of distances that is returned. The test cases for Kruskals makes sure our disjoint sets and priority queue implementations work and that the algorithm returns the correct MST from three smaller custom dataset. Finally, the test cases for our graph implementation checks that the files are loaded correctly and the get adjacent vertices and get weight functions work.
+Our test cases for AStar consist of checking that A* works on our dataset and a smaller custom dataset we created. In addition, we check that the shortest path matches our calculated shortest path. The test cases for BFS consists of checking that BFS returns the correct number of components for our dataset and two smaller custom dataset. We also check that BFS is traversing correctly using a map of distances. The test cases for Kruskals ensure our disjoint sets and priority queue implementations work and that the algorithm returns the correct MST from three smaller custom datasets. Finally, the test cases for our graph implementation check that the files are loaded correctly and that the get adjacent vertices and get weight functions work.
