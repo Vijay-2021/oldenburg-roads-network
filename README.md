@@ -64,7 +64,7 @@ The files in this repository can be ran in the CS225 Docker environment.
     $ cd build
     $ cmake ..
     ```
-At this point the build directory should be setup and you should be able to build our `main` executable and test suite. 
+At this point, the build directory should be setup and you should be able to build our `main` executable and test suite. 
 
 ### Building Main Executable
 In the build directory you created above run the following commands.
