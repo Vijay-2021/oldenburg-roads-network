@@ -16,7 +16,7 @@ To parse the input data we will create a file reader. To confirm that the data i
 
 ## Data Storage
 
-We will use a graph to store the data. We will build an adjacency matrix of all the nodes / road intersections, stored as a 2d vector, where we are storing the weight of each edge as the distance between each intersection. The storage will take up O(n2) space, but this is acceptable due to the relatively small size of our dataset. When we look up whether two nodes are adjacent, we can achieve O(1) linear time. 
+We will use a graph to store the data. We will build a CSR (compressed sparse row) format adjacency matrix of all the nodes / road intersections, stored as several vectors, namely a vector storing the data of each non-zero entry, a vector storing the column indices of each entry, a vector storing how many entries there are on each row, and where we are storing the weight of each edge as the distance between each intersection. The storage will take up O(n) space because each vector is taking up the number of vertices. When we look up whether two nodes are adjacent, we can achieve O(1) linear time because the degree of each node is very low (there are about 7000 edges and 6000 vertices). 
 
 ## Algorithm 
 
