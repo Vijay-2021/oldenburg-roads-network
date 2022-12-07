@@ -26,7 +26,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/lib)
 file(GLOB_RECURSE tests CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/tests/*.cpp)
 file(GLOB_RECURSE exec CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/entry/*.cpp)
 add_executable(tests ${tests})
-add_executable(exec ${exec})
+add_executable(main ${exec})
 
 target_include_directories(tests
     PUBLIC ${PROJECT_SOURCE_DIR}/includes
@@ -36,13 +36,13 @@ target_include_directories(tests
     PUBLIC ${PROJECT_SOURCE_DIR}/lib
 )
 
-target_include_directories(exec
+target_include_directories(main
     PUBLIC ${PROJECT_SOURCE_DIR}/includes
 )
 
-target_include_directories(exec
+target_include_directories(main
     PUBLIC ${PROJECT_SOURCE_DIR}/lib
 )
 
-target_link_libraries(exec PRIVATE Catch2::Catch2WithMain includes lib)
+target_link_libraries(main PRIVATE Catch2::Catch2WithMain includes lib)
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain includes lib)

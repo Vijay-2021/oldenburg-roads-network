@@ -32,7 +32,11 @@ int main(int argc, char* argv[]) {
         g = loadGraph(inVerticesFile, inEdgeFile);
 
         BFS bfs;
+        Kruskals kruskals;
+        kruskals.makeMST(g);
+        std::cout << "Density: " << kruskals.getDensity() << std::endl;
         std::cout << "Number of Components: " << bfs.countComponents(g) << std::endl;
+        
     }
 
     if (argc == 3) {
@@ -51,6 +55,9 @@ int main(int argc, char* argv[]) {
         }
 
         BFS bfs;
+        Kruskals kruskals;
+        kruskals.makeMST(g);
+        std::cout << "Density: " << kruskals.getDensity() << std::endl;
         std::cout << "Number of Components: " << bfs.countComponents(g) << std::endl;
     }
 }
