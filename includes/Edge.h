@@ -1,5 +1,9 @@
 #pragma once
 
+/**
+* Edge struct storing connected vertices and distance
+*/
+
 struct Edge {
     int v1;
     int v2;

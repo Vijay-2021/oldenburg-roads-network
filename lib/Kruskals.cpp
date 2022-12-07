@@ -1,6 +1,7 @@
 #include "Kruskals.hpp"
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 
 Kruskals::Kruskals() {
     // do nothing!
@@ -14,6 +15,7 @@ double Kruskals::getWeight() const{
 }
 
 void Kruskals::makeMST(Graph g) {
+    // Add num of vertices to the disjoint sets
     unsigned N = g.getNumVertices();
     forest_.addelements(N);
     std::vector<int> vertices;
@@ -25,6 +27,8 @@ void Kruskals::makeMST(Graph g) {
     int row = 0;
     int counter = 0;
     weight_ = 0; // reset or initialize weight
+
+    // Add all edges to the priority queue
     for (int i = 0; i < g.getNumEdges(); i++) {
         Edge e = {row, cols[i], distances[i]};
         pq_.insert(e);
@@ -33,6 +37,8 @@ void Kruskals::makeMST(Graph g) {
             row++;
         }
     } 
+
+    // Add shortest edges until MST is complete, avoiding cycles 
     std::vector<Edge> edges;
     std::vector<bool> seen; 
     for (int i = 0 ; i < g.getNumVertices(); i++) {
@@ -42,7 +48,6 @@ void Kruskals::makeMST(Graph g) {
         Edge e = pq_.remove();
         if (forest_.find(e.v1) != forest_.find(e.v2)) {
             weight_ += e.distance;
-            // @TODO insert edge and vertices to min_span_tree (e.distance, e.v1, e.v2)
             forest_.setunion(forest_.find(e.v1), forest_.find(e.v2));
             edges.push_back(e);
             if (seen[e.v1] == false) {
@@ -53,9 +58,10 @@ void Kruskals::makeMST(Graph g) {
                 vertices.push_back(e.v2);
                 seen[e.v2] = true;
             }
-        }
-        
+        }        
     }
+
+    // Sort and pass params to Graph constructor to create MST
     std::sort(vertices.begin(), vertices.end());
     for (unsigned i = 0; i < vertices.size(); i++) {
         x_locs.push_back(g.getX(vertices[i]));
@@ -69,5 +75,5 @@ Graph Kruskals::getMST() const {
 }
 
 double Kruskals::getDensity() const {
-    return (weight_ / (double)min_span_tree_.getNumEdges()); 
+    return (weight_ / (double)min_span_tree_.getNumEdges()) / (std::sqrt(10000*10000 + 10000*10000)); 
 }

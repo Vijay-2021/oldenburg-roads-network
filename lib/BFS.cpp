@@ -8,6 +8,7 @@ int BFS::countComponents(const Graph& g) {
     int numVertices = g.getNumVertices();
     visited_vertices_ = std::vector<bool>(numVertices, false);
 
+    // Run BFS on all unvisited vertices
     int numComponents = 0;
     for (int v = 0; v < numVertices; v++) {
         if (visited_vertices_[v] == false) {

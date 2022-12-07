@@ -20,18 +20,12 @@ AStar::AStar(Graph g){
 }
 
 
-std::vector<int> AStar::reconstruct_path(int start_location, int current_location) {
-    /* Pseudocode
-    total_path = {current} (current here is current_location)
-    while current in cameFrom.keys:
-        current = cameFrom[current]
-        total_path.prepend(current)
-    return total_path
-     */
-    
+std::vector<int> AStar::reconstruct_path(int current_location) {
     std::vector<int> total_path;
     total_path.push_back(current_location);
     int current = current_location;
+
+    // Stop once the key is not in the came from map
     while (cameFrom.contains(current)) {
         current = cameFrom[current];
         total_path.push_back(current);
@@ -49,10 +43,9 @@ void AStar::reset() {
 }
 std::vector<int> AStar::AStar_func(int start, int goal){
     Node current(start, g_.getEuclideanDist(start, goal));
-    openSet.insert(current); // Set of discovered nodes
-    // cameFrom; // empty map
+    openSet.insert(current);
     for (int i = 0 ; i < g_.getNumVertices(); i++) {
-        gScore[i] = 10000000000;
+        gScore[i] = 10000000000; // set the original distance to "infinity"
         fScore[i] = 10000000000;
     }
     gScore[start] = 0;
@@ -60,12 +53,11 @@ std::vector<int> AStar::AStar_func(int start, int goal){
     while(openSet.size() > 0) {
         Node current = openSet.remove(); // node in openSet having lowest fScore[] value
         if(current.vertex == goal) {
-            return reconstruct_path(start, current.vertex);
+            return reconstruct_path(current.vertex);
         }
         for(int neighbor : g_.adjacent(current.vertex)){ // Neighbors of current based on matrix
             double tentative_gScore = gScore[current.vertex] + g_.getEuclideanDist(current.vertex, neighbor); // weights are also Euclidean distance!
             if(tentative_gScore < gScore[neighbor]){
-                // cameFrom[neighbor] = current; // find data type for cameFrom
                 gScore[neighbor] = tentative_gScore;
                 fScore[neighbor] = tentative_gScore + g_.getEuclideanDist(neighbor, goal);
                 cameFrom[neighbor] = current.vertex;

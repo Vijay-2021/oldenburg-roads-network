@@ -9,17 +9,73 @@ using namespace std;
 template <typename T>
 class PriorityQueue {
     public:
+        /**
+        * @param e1 the first element to compare
+        * @param e2 the second element to compare
+        * Used to tell if one element has higher priority than another element
+        */
         bool higherPriority(T e1, T e2);
+
+        /***
+        * @param e1 the first element to swap
+        * @param e2 the second element to swap
+        * Swaps two elements in place
+        */
         void swap(T& e1, T& e2);
+
+        /***
+        * @param e the element to insert
+        * Adds an element to our priority queue
+        */
         void insert(T e);
+
+        /**
+        * Removes a the highest priority element from our priority queue
+        */
         T remove();
+
+        /**
+        * @param currentIdx the index to check for a child from
+        * checks if a given element in the priority queue has a child
+        */
         bool hasAChild(size_t currentIdx) const;
+
+        /**
+        * @param idx the index to compare the priority of the children for
+        * tells us if the index is good. 
+        */
         unsigned maxPriorityChild(unsigned idx);
+
+        /**
+        * @param idx the index to heapify down at
+        */
         void heapifyDown(unsigned idx);
+
+        /**
+        * @param idx the index to heapify down at 
+        */
         void heapifyUp(unsigned idx);
+
+        /**
+        * @return the size of the element vector
+        */
         unsigned size() const;
+
+        /**
+        * @param idx the index of the element to change the priority of
+        * @param elem the value to change the priority too
+        * What this does is it updates the priority of the node and then calls heapify up and down to restore priority queue to a min heap
+        */
         void updateElem(unsigned idx, const T& elem);
+
+        /**
+        * @return the element vector
+        */
         vector<T> getElems() const;
+
+        /**
+        * clears the elements vector
+        */
         void clear();
     private:
         vector<T> elems_;
