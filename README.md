@@ -22,7 +22,7 @@ The files in this repository can be ran in the CS225 Docker environment.
     ```console
     $ cd oldenburg-roads-network
     ```
-3. Running commands to setup the build folder and cmake.
+3. Running commands to setup the build folder and CMake.
     ```console
     $ mkdir build
     $ cd build
