@@ -20,7 +20,7 @@ We will use a graph to store the data. We will build an adjacency matrix of all 
 
 ## Algorithm 
 
-Kruskal’s Algorithm:
+### Kruskal’s Algorithm:
 - Usage:  We can get a set of paths between all road intersections with the least overall distance traveled, or the minimum spanning tree. We can use this to do our density calculations, which will help us determine how cluttered or spread out the road network is. To do the density calculation we will just sum up the weights along all of the edges and then divide by the total number of nodes. 
 - Data Structures:
     - Disjoint set
@@ -30,7 +30,7 @@ Kruskal’s Algorithm:
 - Estimated/Target Big O:
     - Time complexity: O(Elog(E)) Our Kruskal’s Algorithm will utilize a priority queue and a disjoint set. Building the priority queue will be O(E) and removing the minimum from the priority queue will be O(logE). The dominant term will come from looping through the edges and remove the minimum from the priority queue, which will be O(Elog(E)).
     - Space complexity O(E + V) We will need storage for our group of disjoint sets, to keep track of all our vertices, as well as all the edges in our priority queue, which becomes E + V.
-Breadth First Search:
+### Breadth First Search:
 - Usage: We will use Breadth First Search to find the number of connected components 
 - Heuristics: none
 - Function inputs: The graph
@@ -40,7 +40,7 @@ Breadth First Search:
 - Estimated/Target Big O:
     - Time complexity: O(V + E) 
     - Space complexity: O(V)
-A* Algorithm: 
+### A* Algorithm: 
 - Usage: We will use A* algorithm to determine the minimum distance between two nodes (first we will check if they are in the same connected component and then we will run A*). 
 - Heuristics: For A* we will use the minimum distance between the point and the goal. This is doable because we are given the normalized x and y coordinates for each point so we can just store this as part of our data structure. 
 - Function inputs: start, goal, evaluation heuristic
@@ -49,8 +49,8 @@ A* Algorithm:
     - PriorityQueue (implemented as an array) 
     - Map
 - Big O:
-    - Time complexity: O(E)
-    - Space complexity: O(V)
+    - Time complexity: O(b^d)
+    - Space complexity: O(b^d)
 
 
 ## Timeline

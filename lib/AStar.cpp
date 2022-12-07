@@ -45,8 +45,8 @@ std::vector<int> AStar::AStar_func(int start, int goal){
     Node current(start, g_.getEuclideanDist(start, goal));
     openSet.insert(current);
     for (int i = 0 ; i < g_.getNumVertices(); i++) {
-        gScore[i] = 10000000000; // set the original distance to "infinity"
-        fScore[i] = 10000000000;
+        gScore[i] = 10000000000; // sets the original distance to "infinity"; cheapest path from start to n that is known at time
+        fScore[i] = 10000000000; // sets the original distance to "infinity"; fScore[i] = gScore[i] + getEuclideanDist()
     }
     gScore[start] = 0;
     fScore[start] = g_.getEuclideanDist(start, goal);

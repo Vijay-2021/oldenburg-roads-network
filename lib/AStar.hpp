@@ -19,7 +19,7 @@ class AStar {
         AStar(Graph g);
 
         /***
-        * Resets our map
+        * Resets our map 
         */
         void reset();
 
