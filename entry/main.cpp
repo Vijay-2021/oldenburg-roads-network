@@ -15,7 +15,9 @@ static void show_usage(std::string name)
               << std::endl;
 }
 
-
+/**
+Parse arguments. 
+*/
 int main(int argc, char* argv[]) {
     std::string inVerticesFile = "";
     std::string inEdgeFile = "";
@@ -33,7 +35,7 @@ int main(int argc, char* argv[]) {
         BFS bfs;
         Kruskals kruskals;
         kruskals.makeMST(g);
-        std::cout << "Density: " << kruskals.getDensity() << std::endl;
+        std::cout << "Density: " << kruskals.getDensity() << std::endl; 
         std::cout << "Number of Components: " << bfs.countComponents(g) << std::endl;
     }
     else if (argc == 3) {
