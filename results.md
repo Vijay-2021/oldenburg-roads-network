@@ -1,3 +1,5 @@
+An analysis of each algorithim: 
+
 Each algorithim worked correctly. This is highlighted in our test files. For each algorithim, we made datasets to test the correct traversal method and end result. 
 
 A*: In the case of AStar we checked two things in our test file. First we checked that the nodes in the shortest path were all ajacent. Then we checked that the start and end node were the desired start and end node. We also made a test file to check that AStar was truly choosing the shortest path and not just a path between the two nodes. We then wrote code in the main file to run AStar to get the path between two vertices that the user inputs. 
